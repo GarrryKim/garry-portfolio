@@ -10,7 +10,7 @@ export interface User {
 
 export async function findUserByEmail(email: string): Promise<User | null> {
   try {
-    const [rows] = await pool.execute('SELECT id, email, name, picture FROM user WHERE email = ?', [email])
+    const [rows] = await pool.execute('SELECT id, email, name, picture FROM users WHERE email = ?', [email])
     const users = rows as User[]
     return users.length > 0 ? users[0] : null
   } catch (error) {

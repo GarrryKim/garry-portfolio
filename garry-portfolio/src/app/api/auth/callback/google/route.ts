@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import { generateToken } from '@/app/_lib/jwt'
+import { generateAccessToken, generateRefreshToken } from '@/app/_lib/jwt'
 import { echangeCodeForToken, fetchGoogleUserInfo, GoogleUserInfo } from '@/app/_lib/oauth'
 import { createUser, findUserByEmail, User } from '@/app/_lib/dbUser'
 import { DatabaseError, OAuthError } from '@/app/_lib/errors'
+import { saveRefreshToken } from '@/app/_lib/dbToken'
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
@@ -29,10 +30,10 @@ export async function GET(request: NextRequest) {
   try {
     // 1. Authroization Code를 받아서 Access Token으로 교환
     const tokenData = await echangeCodeForToken(code)
-    const accessToken = tokenData.access_token
+    const googleAccessToken = tokenData.access_token
 
     // 2. AccessToken으로 사용자 정보 받아오기
-    const userInfo: GoogleUserInfo = await fetchGoogleUserInfo(accessToken)
+    const userInfo: GoogleUserInfo = await fetchGoogleUserInfo(googleAccessToken)
     const { email, name, picture } = userInfo
 
     // 이메일 검증
@@ -49,14 +50,31 @@ export async function GET(request: NextRequest) {
     }
 
     // 5. JWT 토큰 생성
-    const token = generateToken({ userId: user.id, email: user.email })
+    const accessToken = generateAccessToken({ userId: user.id, email: user.email })
+    const { token: refreshToken, expiresAt } = generateRefreshToken({ userId: user.id, email: user.email })
 
-    // 6. JWT를 쿠키에 저장
-    const response = NextResponse.redirect('http://localhost:3000')
-    response.cookies.set('access-token', token, {
+    // 6. Refresh Token을 DB에 저장
+    await saveRefreshToken({
+      userId: user.id,
+      refreshToken: refreshToken,
+      expiresAt: expiresAt,
+    })
+
+    // 7. Access Token을 리디렉션 URL에 포함
+    if (!process.env.JWT_REDIRECT_URL) {
+      throw new Error('JWT_REDIRECT_URL 환경 변수가 설정되지 않았습니다.')
+    }
+
+    const redirectUrl = new URL(process.env.JWT_REDIRECT_URL)
+    redirectUrl.searchParams.set('access-token', accessToken)
+
+    // 8. Refresh Token을 쿠키에 저장
+    const response = NextResponse.redirect(redirectUrl.toString())
+    response.cookies.set('refresh-token', refreshToken, {
       httpOnly: true,
       path: '/',
-      maxAge: 60 * 5,
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60,
     })
 
     return response
