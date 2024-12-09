@@ -30,7 +30,9 @@ export async function findRefreshToken(refreshToken: string): Promise<RefreshTok
     `
 
   const [rows] = await pool.execute<RefreshTokenRow[]>(query, [refreshToken])
+
   if (rows.length === 0) return null
+
   const row = rows[0]
   return {
     userId: row.user_id,
