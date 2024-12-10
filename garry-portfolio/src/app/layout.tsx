@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import '@/app/styles/global.scss'
-import Link from 'next/link'
 import Navbar from './components/Navbar/Navbar'
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +15,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        <Link href={'/'}>Home</Link>
         {children}
       </body>
     </html>
