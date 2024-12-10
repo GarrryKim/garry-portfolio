@@ -1,1 +1,6 @@
-@import 'normalize.css';
+@use '~normalize.css' as normmalize;
+@use 'pretendard.scss';
+
+body {
+  font-family: 'Pretandard', sans-serif;
+}
