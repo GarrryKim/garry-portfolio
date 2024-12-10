@@ -14,7 +14,8 @@
     "mysql2": "^3.11.5",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "sass-embedded": "^1.82.0"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.7",
@@ -23,6 +24,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
+    "normalize.css": "^8.0.1",
     "sass": "^1.82.0",
     "typescript": "^5"
   }
