@@ -8,7 +8,7 @@ const Navbar: React.FC = () => {
       <Link href={'/'}>
         <Button>홈</Button>
       </Link>
-      <Link href={'/login'}>
+      <Link href={'/api/auth/login'}>
         <Button>로그인</Button>
       </Link>
     </nav>
