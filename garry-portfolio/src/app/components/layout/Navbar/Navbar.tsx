@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import styles from './Navbar.module.scss'
 import Button from '@/app/components/Button/Button'
+import LoginContainer from './LoginContainer/LoginContainer'
 
 const Navbar: React.FC = () => {
   return (
@@ -8,9 +9,7 @@ const Navbar: React.FC = () => {
       <Link href={'/'}>
         <Button>홈</Button>
       </Link>
-      <Link href={'/api/auth/login'}>
-        <Button>로그인</Button>
-      </Link>
+      <LoginContainer />
     </nav>
   )
 }
