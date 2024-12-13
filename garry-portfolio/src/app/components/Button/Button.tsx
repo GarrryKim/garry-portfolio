@@ -1,11 +1,15 @@
 import styles from './Button.module.scss'
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
 }
 
-const Button: React.FC<ButtonProps> = ({ children }) => {
-  return <div className={styles.button}>{children}</div>
+const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+  return (
+    <button className={styles.button} {...props}>
+      {children}
+    </button>
+  )
 }
 
 export default Button
