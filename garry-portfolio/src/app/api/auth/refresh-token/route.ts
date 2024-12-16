@@ -1,6 +1,5 @@
-import { findRefreshToken, saveRefreshToken } from '@/app/_lib/dbToken'
-import { generateAccessToken, generateRefreshToken, validateRefreshToken, verifyToken } from '@/app/_lib/jwt'
-import { error } from 'console'
+import { saveRefreshToken } from '@/app/_lib/dbToken'
+import { generateAccessToken, generateRefreshToken, validateRefreshToken } from '@/app/_lib/jwt'
 import { NextRequest, NextResponse } from 'next/server'
 
 const JWT_SECRET = process.env.JWT_SECRET
@@ -31,13 +30,13 @@ export async function GET(request: NextRequest) {
     // 새로 발급한 refreshToken 저장
     await saveRefreshToken({
       userId: decoded.userId,
-      refreshToken: refreshToken,
+      refreshToken: newRefreshToken,
       expiresAt: expiresAt,
     })
 
     // 응답에 accessToken, 쿠키에 refreshToken 저장
     const response = NextResponse.json({ accessToken: newAccessToken }, { status: 200 })
-    response.cookies.set('refresh-token', refreshToken, {
+    response.cookies.set('refresh-token', newRefreshToken, {
       httpOnly: true,
       path: '/',
       sameSite: 'lax',
