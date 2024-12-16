@@ -4,8 +4,9 @@ import Button from '@/app/components/Button/Button'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import UserInfo from '../UserInfoBox/UserInfo'
+import styles from './UserContainer.module.css'
 
-const LoginButton: React.FC = () => {
+const UserContainer: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // 컴포넌트 로드시 로그인 여부 검사
@@ -46,7 +47,7 @@ const LoginButton: React.FC = () => {
   // 쿠키 삭제 차후 구현
 
   return (
-    <>
+    <div className={styles.container}>
       {isLoggedIn ? (
         <>
           <UserInfo />
@@ -57,8 +58,8 @@ const LoginButton: React.FC = () => {
           <Button>로그인</Button>
         </Link>
       )}
-    </>
+    </div>
   )
 }
 
-export default LoginButton
+export default UserContainer
