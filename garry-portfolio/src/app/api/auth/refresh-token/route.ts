@@ -8,7 +8,17 @@ if (!JWT_SECRET) {
   throw new Error('JWT_SECRET 환경 변수가 설정되지 않았습니다.')
 }
 
-export async function GET(request: NextRequest) {
+/**
+ * @swagger
+ * /api/auth/refresh-token:
+ *   post:
+ *     description: 리프레시 / 액세스 토큰 재발급 요청
+ *     tags: [auth]
+ *     responses:
+ *       200:
+ *         description: 리프레시 / 액세스 토큰 재발급
+ */
+export async function POST(request: NextRequest) {
   try {
     // refresh-token 쿠키 파싱 (NextRequest의 cookies 메서드 이용)
     const refreshTokenCookie = request.cookies.get('refresh-token')

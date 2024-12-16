@@ -1,6 +1,16 @@
 import { randomUUID } from 'crypto'
 import { NextResponse } from 'next/server'
 
+/**
+ * @swagger
+ * /api/auth/login:
+ *   get:
+ *     description: 구글 로그인 요청
+ *     tags: [auth]
+ *     responses:
+ *       307:
+ *         description: 구글 로그인 페이지로 redirect
+ */
 export async function GET() {
   const clientId = process.env.GOOGLE_CLIENT_ID!
   const redirectUri = process.env.GOOGLE_REDIRECT_URI!

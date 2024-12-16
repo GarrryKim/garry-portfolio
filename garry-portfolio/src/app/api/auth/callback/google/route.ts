@@ -6,6 +6,20 @@ import { createUser, findUserByEmail, User } from '@/app/_lib/dbUser'
 import { DatabaseError, OAuthError } from '@/app/_lib/errors'
 import { saveRefreshToken } from '@/app/_lib/dbToken'
 
+/**
+ * @swagger
+ * /api/auth/callback/google:
+ *   get:
+ *     description: Google Oauth2.0 callback
+ *     tags: [auth]
+ *     responses:
+ *       200:
+ *         description: redirect
+ *       400:
+ *         description: DB 관련 에러
+ *       500:
+ *         description: 서버 에러
+ */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const code = searchParams.get('code')
