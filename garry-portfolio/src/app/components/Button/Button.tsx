@@ -4,9 +4,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
 }
 
-const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
   return (
-    <button className={styles.button} {...props}>
+    <button className={`${styles.button} ${className?.includes('active') ? styles.active : ''}`} {...props}>
       {children}
     </button>
   )
