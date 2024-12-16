@@ -1,7 +1,20 @@
 import { pool } from '@/app/_lib/db'
 import { User } from '@/app/_lib/dbUser'
 import { NextRequest, NextResponse } from 'next/server'
-
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     description: 유저 정보 조회
+ *     tags:
+ *       - users
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: 유저 정보 반환
+ *
+ */
 export async function GET(request: NextRequest) {
   try {
     const requestUser = request.headers.get('userId')
