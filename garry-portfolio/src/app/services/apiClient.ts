@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-const apiClient = axios.create({
-  baseURL: process.env.NEXT_API_BASE_URL,
+export const apiClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-const apiAuthClient = axios.create({
+export const apiAuthClient = axios.create({
   ...apiClient.defaults,
 })
 
