@@ -22,7 +22,7 @@ export async function findUserByEmail(email: string): Promise<User | null> {
 export async function createUser(email: string, name: string, picture: string): Promise<User> {
   try {
     const [result] = await pool.execute(
-      'INSERT INTO user (email, name, picture, created_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())',
+      'INSERT INTO users (email, name, picture, created_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())',
       [email, name, picture]
     )
     const insertResult = result as any

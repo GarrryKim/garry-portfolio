@@ -3,6 +3,7 @@
 import Button from '@/app/components/Button/Button'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import UserInfo from '../UserInfoBox/UserInfo'
 
 const LoginButton: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -47,7 +48,10 @@ const LoginButton: React.FC = () => {
   return (
     <>
       {isLoggedIn ? (
-        <Button onClick={onClickLogout}>로그아웃</Button>
+        <>
+          <UserInfo />
+          <Button onClick={onClickLogout}>로그아웃</Button>
+        </>
       ) : (
         <Link href={'/api/auth/login'}>
           <Button>로그인</Button>

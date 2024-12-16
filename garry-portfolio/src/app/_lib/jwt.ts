@@ -31,7 +31,8 @@ export function generateRefreshToken(payload: TokenPayload): TokenWithExpiry {
   return { token, expiresAt }
 }
 
-export function verifyToken(token: string): TokenPayload {
+export function verifyToken(rawToken: string): TokenPayload {
+  const token = rawToken.startsWith('Bearer ') ? rawToken.substring(7) : rawToken
   const decoded = jwt.verify(token, JWT_SECRET) as TokenPayload
 
   // 타입 가드
