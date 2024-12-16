@@ -1,13 +1,23 @@
 import { pool } from '@/app/_lib/db'
-import { NextResponse } from 'next/server'
+import { User } from '@/app/_lib/dbUser'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const requestUser = request.headers.get('userId')
+
     // user 테이블에서 유저 조회
-    const [rows] = await pool.query('SELECT * FROM user')
+    const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [requestUser])
+
+    if (Array.isArray(rows) && rows.length === 0) {
+      return NextResponse.json({ success: false, message: 'User not found' }, { status: 404 })
+    }
+
+    const users = rows as User[]
+    const user = users[0]
 
     // 성공 응답
-    return NextResponse.json({ success: true, data: rows }, { status: 200 })
+    return NextResponse.json({ success: true, data: user }, { status: 200 })
   } catch (err) {
     console.error('GET /api/users 에러: ', err)
 
