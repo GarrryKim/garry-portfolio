@@ -15,7 +15,7 @@ export async function middleware(req: NextRequest) {
 
   try {
     // 액세스 토큰 검사 api
-    const tokenResponse = await fetch(process.env.NEXT_API_BASE_URL + '/api/auth/access-token', {
+    const tokenResponse = await fetch(process.env.NEXT_API_BASE_URL + '/auth/access-token', {
       headers: {
         'Content-Type': 'application/json',
         Authorization: accessToken,
