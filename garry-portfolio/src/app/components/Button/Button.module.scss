@@ -5,10 +5,21 @@
   border: 1px solid black;
   border-radius: 4px;
 
-  color: white;
-  background-color: black;
+  background-color: white;
   text-decoration: none;
   font-weight: bold;
 
   cursor: pointer;
+
+  &.active {
+    color: white;
+    background-color: black;
+  }
+
+  &:hover {
+    color: white;
+    background-color: black;
+
+    transition: 0.2s;
+  }
 }

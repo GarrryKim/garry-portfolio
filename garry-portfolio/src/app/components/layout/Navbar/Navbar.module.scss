@@ -3,9 +3,18 @@
   top: 0;
 
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   height: 60px;
 
   border-bottom: 1px solid #cccccc;
+  background-color: #fafafa;
+}
+
+.link-bar {
+  margin: 0 20px;
+}
+
+.active {
+  border-color: red;
 }
