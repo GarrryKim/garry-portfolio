@@ -9,8 +9,6 @@ import { usePathname } from 'next/navigation'
 const Navbar: React.FC = () => {
   const pathname = usePathname()
 
-  console.log(pathname)
-
   return (
     <nav className={styles.container}>
       <div className={styles['link-bar']}>
@@ -22,6 +20,9 @@ const Navbar: React.FC = () => {
         </Link>
         <Link href={'/blog'}>
           <Button className={pathname === '/blog' ? 'active' : ''}>블로그</Button>
+        </Link>
+        <Link href={'/api-doc'}>
+          <Button className={pathname === '/api-doc' ? 'active' : ''}>API 문서</Button>
         </Link>
       </div>
       <LoginContainer />

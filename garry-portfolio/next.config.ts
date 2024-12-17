@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   sassOptions: {
     implementation: 'sass-embedded',
   },
+  reactStrictMode: false,
 }
 
 export default nextConfig
