@@ -2,9 +2,10 @@
 
 import SwaggerUI from 'swagger-ui-react'
 import 'swagger-ui-react/swagger-ui.css'
+import { OpenAPIV3 } from 'openapi-types'
 
 type Props = {
-  spec: Record<string, any>
+  spec: OpenAPIV3.Document
 }
 
 function ReactSwagger({ spec }: Props) {
