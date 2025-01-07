@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 
 const Login: React.FC = () => {
   const searchParams = useSearchParams()
@@ -27,11 +27,7 @@ const Login: React.FC = () => {
     }
   }, [])
 
-  return (
-    <>
-      <div>로그인중입니다.</div>
-    </>
-  )
+  return <Suspense fallback={<div>로그인중입니다.</div>}></Suspense>
 }
 
 export default Login
