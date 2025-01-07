@@ -1,5 +1,6 @@
 import { pool } from '@/app/_lib/db'
 import { DatabaseError } from '@/app/_lib/errors'
+import { ResultSetHeader } from 'mysql2'
 
 export interface User {
   id: number
@@ -21,13 +22,13 @@ export async function findUserByEmail(email: string): Promise<User | null> {
 
 export async function createUser(email: string, name: string, picture: string): Promise<User> {
   try {
-    const [result] = await pool.execute(
+    const [result] = await pool.execute<ResultSetHeader>(
       'INSERT INTO users (email, name, picture, created_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())',
       [email, name, picture]
     )
-    const insertResult = result as any
+
     return {
-      id: insertResult.insertId,
+      id: result.insertId,
       email,
       name,
       picture,
