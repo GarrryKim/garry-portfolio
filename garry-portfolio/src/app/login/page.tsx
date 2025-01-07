@@ -25,9 +25,15 @@ const Login: React.FC = () => {
     } else {
       console.log('액세스 토큰이 없습니다.')
     }
-  }, [])
+  }, [searchParams])
 
-  return <Suspense fallback={<div>로그인중입니다.</div>}></Suspense>
+  return <div>로그인중입니다.</div>
 }
 
-export default Login
+export default function SuspenseWrapper() {
+  return (
+    <Suspense fallback={<div>로딩 중...</div>}>
+      <Login />
+    </Suspense>
+  )
+}
