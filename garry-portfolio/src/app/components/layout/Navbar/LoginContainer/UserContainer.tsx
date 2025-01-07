@@ -1,7 +1,6 @@
 'use client'
 
 import Button from '@/app/components/Button/Button'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import UserInfo from '../UserInfoBox/UserInfo'
 import styles from './UserContainer.module.css'
@@ -18,8 +17,15 @@ const UserContainer: React.FC = () => {
     }
   }, [])
 
-  const onClickLogout = () => {
+  const handleLogin = () => {
+    window.location.href = '/api/auth/login'
+  }
+
+  const handleLogout = () => {
     removeAccesTokenFromLocalStorage()
+
+    // 로그아웃
+    setIsLoggedIn(false)
   }
 
   const checkAccessToken = () => {
@@ -39,9 +45,6 @@ const UserContainer: React.FC = () => {
     checkAccessToken()
 
     localStorage.removeItem('access-token')
-
-    // 로그아웃
-    setIsLoggedIn(false)
   }
 
   // 쿠키 삭제 차후 구현
@@ -51,12 +54,10 @@ const UserContainer: React.FC = () => {
       {isLoggedIn ? (
         <>
           <UserInfo />
-          <Button onClick={onClickLogout}>로그아웃</Button>
+          <Button onClick={handleLogout}>로그아웃</Button>
         </>
       ) : (
-        <Link href={'/api/auth/login'}>
-          <Button>로그인</Button>
-        </Link>
+        <Button onClick={handleLogin}>로그인</Button>
       )}
     </div>
   )
