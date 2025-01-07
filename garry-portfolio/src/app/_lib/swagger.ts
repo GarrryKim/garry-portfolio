@@ -1,6 +1,7 @@
 import { createSwaggerSpec } from 'next-swagger-doc'
+import { OpenAPIV3 } from 'openapi-types'
 
-export const getApiDocs = async () => {
+export const getApiDocs = async (): Promise<OpenAPIV3.Document> => {
   const spec = createSwaggerSpec({
     apiFolder: 'src/app/api', // define api folder under app folder
     definition: {
@@ -20,6 +21,6 @@ export const getApiDocs = async () => {
       },
       security: [],
     },
-  })
+  }) as OpenAPIV3.Document
   return spec
 }
