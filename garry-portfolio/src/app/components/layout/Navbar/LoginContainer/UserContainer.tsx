@@ -4,7 +4,7 @@ import Button from '@/app/components/Button/Button'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import UserInfo from '../UserInfoBox/UserInfo'
-import styles from './UserContainer.module.css'
+import styles from './UserContainer.module.scss'
 
 const UserContainer: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
