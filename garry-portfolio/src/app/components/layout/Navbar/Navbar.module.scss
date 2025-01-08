@@ -1,3 +1,5 @@
+@use '@/app/styles/mixins' as *;
+
 .container {
   position: sticky;
   top: 0;
@@ -9,10 +11,24 @@
 
   border-bottom: 1px solid #cccccc;
   background-color: #fafafa;
+
+  @include respond-to('mobile') {
+    height: 40px;
+
+    font-size: 14px;
+  }
 }
 
 .link-bar {
-  margin: 0 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 10px;
+
+  overflow: scroll;
+
+  @include respond-to('mobile') {
+    margin: 0 4px;
+  }
 }
 
 .active {
