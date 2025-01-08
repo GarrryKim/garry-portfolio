@@ -1,3 +1,5 @@
+@use '@/app/styles/mixins' as *;
+
 .button {
   margin: 0 5px;
   padding: 10px;
@@ -9,7 +11,13 @@
   text-decoration: none;
   font-weight: bold;
 
+  white-space: nowrap;
+
   cursor: pointer;
+
+  @include respond-to('mobile') {
+    padding: 4px;
+  }
 
   &.active {
     color: white;

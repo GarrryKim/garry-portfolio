@@ -1,3 +1,5 @@
+@use '@/app/styles/mixins' as *;
+
 .user-container {
   display: flex;
 
@@ -7,6 +9,12 @@
   width: 100px;
 
   overflow: hidden;
+
+  @include respond-to('mobile') {
+    margin-right: none;
+
+    width: 60px;
+  }
 }
 
 .user-img {
@@ -14,6 +22,13 @@
 
   width: 40px;
   height: 40px;
+
+  @include respond-to('mobile') {
+    margin-right: none;
+
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .user-text {
@@ -21,4 +36,11 @@
   font-size: 16px;
 
   white-space: nowrap;
+  overflow-x: scroll;
+
+  @include respond-to('mobile') {
+    margin-right: none;
+
+    font-size: 14px;
+  }
 }
