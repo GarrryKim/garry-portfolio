@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { generateAccessToken, generateRefreshToken } from '@/app/_lib/jwt'
 import { echangeCodeForToken, fetchGoogleUserInfo, GoogleUserInfo } from '@/app/_lib/oauth'
-import { createUser, findUserByEmail, User } from '@/app/_lib/dbUser'
 import { DatabaseError, OAuthError } from '@/app/_lib/errors'
 import { saveRefreshToken } from '@/app/_lib/dbToken'
+import { User } from '@/types/user'
+import { createUser, getUserByEmail } from '@/services/userService'
 
 /**
  * @swagger
@@ -56,7 +57,7 @@ export async function GET(request: NextRequest) {
     }
 
     // 3. DB에서 사용자 조회
-    let user: User | null = await findUserByEmail(email)
+    let user: User | null = await getUserByEmail(email)
 
     // 4. 사용자가 없다면 생성(회원가입)
     if (!user) {
