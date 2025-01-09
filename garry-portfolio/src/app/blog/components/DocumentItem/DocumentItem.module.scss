@@ -1,0 +1,25 @@
+.container {
+  padding: 15px;
+
+  min-height: 80px;
+  border-radius: 8px;
+
+  &.selected {
+    padding-left: 7px;
+    border-left: 8px solid #596fff;
+
+    background-color: #eeeeee;
+  }
+}
+
+.title {
+  font-weight: 700;
+}
+
+.content {
+  color: #888888;
+}
+
+.date {
+  color: #dddddd;
+}
