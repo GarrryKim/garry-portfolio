@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { generateAccessToken, generateRefreshToken } from '@/app/_lib/jwt'
-import { echangeCodeForToken, fetchGoogleUserInfo, GoogleUserInfo } from '@/app/_lib/oauth'
+import { exchangeCodeForToken, fetchGoogleUserInfo, GoogleUserInfo } from '@/app/_lib/oauth'
 import { DatabaseError, OAuthError } from '@/app/_lib/errors'
 import { saveRefreshToken } from '@/app/_lib/dbToken'
 import { User } from '@/types/user'
@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
 
   try {
     // 1. Authroization Code를 받아서 Access Token으로 교환
-    const tokenData = await echangeCodeForToken(code)
+    const tokenData = await exchangeCodeForToken(code)
     const googleAccessToken = tokenData.access_token
 
     // 2. AccessToken으로 사용자 정보 받아오기
