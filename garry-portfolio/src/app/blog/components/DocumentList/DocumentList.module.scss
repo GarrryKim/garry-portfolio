@@ -1,19 +1,20 @@
 .container {
-  padding: 20px;
-
   display: flex;
   flex-direction: column;
 
-  width: 200px;
+  width: 240px;
   border-right: 1px solid #dddddd;
 }
 
 .tool-bar {
+  margin: 10px;
   display: flex;
   justify-content: end;
 }
 
 .list-container {
+  margin: 10px;
+
   overflow-x: hidden;
   overflow-y: scroll;
 }
