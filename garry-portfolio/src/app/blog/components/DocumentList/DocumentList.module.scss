@@ -1,0 +1,30 @@
+.container {
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 200px;
+  border-right: 1px solid #dddddd;
+}
+
+.tool-bar {
+  display: flex;
+  justify-content: end;
+}
+
+.list-container {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+
+  background-color: #dddddd;
+
+  &.selected {
+    background-color: #ffffff;
+  }
+}

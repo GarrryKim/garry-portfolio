@@ -1,5 +1,6 @@
 @use '~normalize.css' as normmalize;
 @use 'pretendard.scss';
+@use '@/app/styles/mixins' as *;
 
 body {
   font-family: 'Pretandard', sans-serif;
@@ -7,4 +8,14 @@ body {
 
 a {
   text-decoration: none;
+}
+
+:root {
+  --navbar-height: 60px;
+}
+
+@include respond-to('mobile') {
+  :root {
+    --navbar-height: 60px;
+  }
 }

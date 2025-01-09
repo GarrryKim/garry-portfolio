@@ -1,5 +1,14 @@
+import DirectoryList from './components/DirectoryList/DirectoryList'
+import DocuemntList from './components/DocumentList/DocumentList'
+import styles from './page.module.scss'
+
 const Blog: React.FC = () => {
-  return <>블로그 페이지</>
+  return (
+    <div className={styles.container}>
+      <DirectoryList />
+      <DocuemntList />
+    </div>
+  )
 }
 
 export default Blog

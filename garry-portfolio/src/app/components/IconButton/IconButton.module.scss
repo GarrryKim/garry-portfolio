@@ -1,0 +1,20 @@
+@use '@/app/styles/mixins' as *;
+
+.button {
+  margin-left: 5px;
+
+  height: 24px;
+  width: 24px;
+
+  border-radius: 4px;
+
+  border: none;
+
+  background-color: #cccccc;
+  text-decoration: none;
+
+  white-space: nowrap;
+  overflow: hidden;
+
+  cursor: pointer;
+}

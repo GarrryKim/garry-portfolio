@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+
+  // 네비게이션바 크기에 맞춰서 자르고,
+  height: calc(100vh - var(--navbar-height));
+
+  overflow-y: hidden;
+}

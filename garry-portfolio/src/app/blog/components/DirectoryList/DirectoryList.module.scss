@@ -1,0 +1,12 @@
+@use '@/app/styles/mixins' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 40px 0 10px 0;
+  width: 200px;
+  background-color: #666666;
+
+  overflow-y: scroll;
+}
