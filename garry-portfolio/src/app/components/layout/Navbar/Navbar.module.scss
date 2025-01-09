@@ -7,14 +7,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
 
+  height: var(--navbar-height);
+  box-sizing: border-box;
   border-bottom: 1px solid #cccccc;
   background-color: #fafafa;
 
   @include respond-to('mobile') {
-    height: 40px;
-
     font-size: 14px;
   }
 }
