@@ -1,6 +1,16 @@
-import { generateAccessToken, generateRefreshToken, validateRefreshToken } from '@/app/_lib/jwt'
+import { generateAccessToken, generateRefreshToken, validateRefreshToken, verifyToken } from '@/app/_lib/jwt'
 import { fetchRefreshTokenByTokenValue, insertRefreshToken } from '@/repositories/jwtRepository'
 import { RefreshToken } from '@/types/jwt'
+
+// access token 유효성 검증
+export async function validateAccessToken(accessToken: string) {
+  if (!accessToken) {
+    throw new Error('액세스 토큰이 없습니다.')
+  }
+
+  const decoded = verifyToken(accessToken)
+  return decoded
+}
 
 // refresh token 저장 쿼리
 export async function saveRefreshToken({ userId, refreshToken, expiresAt }: RefreshToken): Promise<string | null> {
