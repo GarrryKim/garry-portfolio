@@ -42,5 +42,5 @@ export async function middleware(req: NextRequest) {
 
 // 아래 config에 설정한 경로를 검사 (JWT 토큰 검사)
 export const config = {
-  matcher: '/api/users',
+  matcher: ['/api/users', '/api/blog/documents/:path'],
 }
