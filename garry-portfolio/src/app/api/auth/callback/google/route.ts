@@ -3,9 +3,9 @@ import { cookies } from 'next/headers'
 import { generateAccessToken, generateRefreshToken } from '@/app/_lib/jwt'
 import { exchangeCodeForToken, fetchGoogleUserInfo, GoogleUserInfo } from '@/app/_lib/oauth'
 import { DatabaseError, OAuthError } from '@/app/_lib/errors'
-import { saveRefreshToken } from '@/app/_lib/dbToken'
 import { User } from '@/types/user'
 import { createUser, getUserByEmail } from '@/services/userService'
+import { saveRefreshToken } from '@/services/jwtService'
 
 /**
  * @swagger
