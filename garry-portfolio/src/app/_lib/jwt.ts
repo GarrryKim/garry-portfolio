@@ -1,5 +1,5 @@
+import { findRefreshToken } from '@/services/jwtService'
 import jwt from 'jsonwebtoken'
-import { findRefreshToken } from './dbToken'
 
 const JWT_SECRET = process.env.JWT_SECRET as string
 
