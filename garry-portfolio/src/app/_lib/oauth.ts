@@ -18,7 +18,7 @@ export interface GoogleUserInfo {
   locale: string
 }
 
-export async function echangeCodeForToken(code: string): Promise<TokenResponse> {
+export async function exchangeCodeForToken(code: string): Promise<TokenResponse> {
   try {
     // Authroization Code를 받아서 Access Token으로 교환
     const response = await axios.post<TokenResponse>('https://oauth2.googleapis.com/token', null, {
