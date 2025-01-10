@@ -28,10 +28,10 @@ import { NextRequest, NextResponse } from 'next/server'
  *         description: 서버 에러
  *
  */
-export async function DELETE(request: NextRequest, { params }: { params: { documentId: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ documentId: string }> }) {
   try {
     const userId = Number(request.headers.get('userId'))
-    const { documentId } = await params
+    const documentId = (await params).documentId
 
     if (!userId || typeof userId !== 'number') {
       console.log(userId)
