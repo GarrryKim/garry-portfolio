@@ -28,7 +28,7 @@ import { NextRequest, NextResponse } from 'next/server'
  *         description: 서버 에러
  *
  */
-export async function DELETE(request: NextRequest, { params }: { params: { documentId: number } }) {
+export async function DELETE(request: NextRequest, { params }: { params: { documentId: string } }) {
   try {
     const userId = Number(request.headers.get('userId'))
     const { documentId } = await params
@@ -39,7 +39,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { docum
     }
 
     // 서비스 호출
-    const result = await deleteDocument(documentId)
+    const result = await deleteDocument(Number(documentId))
 
     if (!result) {
       return NextResponse.json({ success: false, message: '문서를 찾을 수 없습니다.' }, { status: 404 })
